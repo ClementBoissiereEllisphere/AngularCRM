@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthenticationService} from "./authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'crm-login',
@@ -7,6 +9,13 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+  constructor(private authentService: AuthenticationService, private router: Router) {
+    if (this.authentService.authenticated) {
+      this.authentService.disconnect();
+      console.log('discornnect');
+    }
+  }
 
   public loginForm: FormGroup = new FormGroup({
     username: new FormControl('a', {
@@ -18,12 +27,18 @@ export class LoginComponent {
   });
 
 
-  onSubmit() {
-    console.log(this.loginForm.controls['password'].errors);
+  onSubmit(): void {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log(this.loginForm.value);
+    console.log('submit', this.loginForm.value)
+    const res = this.authentService.authentUser(this.loginForm.value.login,
+      this.loginForm.value.password);
+
+    if (res != null) {
+      this.router.navigateByUrl('/home');
+    }
+    console.log(res);
   }
 }
 
