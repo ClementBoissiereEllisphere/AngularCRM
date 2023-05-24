@@ -1,0 +1,19 @@
+<h1>
+  REACTIVE FORM
+</h1>
+<form id="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" formControlName="username">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" formControlName="password">
+    <span *ngIf="loginForm.get('password')?.errors?.['checkPassword']">
+      FAUT ECRIRE DES TRUCS EN FAIT
+    </span>
+  </div>
+  <div>
+    <button type="submit">Login</button>
+  </div>
+</form>
