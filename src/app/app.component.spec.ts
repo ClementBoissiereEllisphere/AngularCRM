@@ -1,11 +1,15 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {AppComponent} from './app.component';
+import {AppMaterialModule} from "./app-material.module";
+import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {LoginComponent} from "./login/login.component";
+import {HelpComponent} from "./component/help/help.component";
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
+    imports: [RouterTestingModule, AppMaterialModule, NoopAnimationsModule],
+    declarations: [AppComponent, LoginComponent, HelpComponent]
   }));
 
   it('should create the app', () => {

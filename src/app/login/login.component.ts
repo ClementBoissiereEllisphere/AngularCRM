@@ -17,6 +17,7 @@ export class LoginComponent {
     })
   });
 
+
   onSubmit() {
     console.log(this.loginForm.controls['password'].errors);
     if (this.loginForm.invalid) {
