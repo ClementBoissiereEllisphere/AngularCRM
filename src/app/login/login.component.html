@@ -1,19 +1,16 @@
-<h1>
-  REACTIVE FORM
-</h1>
 <form id="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username" formControlName="username">
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" formControlName="password">
-    <span *ngIf="loginForm.get('password')?.errors?.['checkPassword']">
+  <mat-form-field>
+    <mat-label for="username">Username</mat-label>
+    <input matInput type="text" name="username" id="username" formControlName="username">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="password">Password</mat-label>
+    <input matInput type="password" name="password" id="password" formControlName="password">
+  </mat-form-field>
+  <span *ngIf="loginForm.get('password')?.errors?.['checkPassword']" class="error">
       FAUT ECRIRE DES TRUCS EN FAIT
     </span>
-  </div>
   <div>
-    <button type="submit">Login</button>
+    <button mat-flat-button type="submit" [disabled]="!loginForm.valid" color="primary">Validate</button>
   </div>
 </form>
